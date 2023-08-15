@@ -3,5 +3,5 @@
 
 def print_list_integers(my_list=[]):
     '''Print all intergers of the list'''
-    for contents in range(len(my_list)):
-        print("{:d}".format(my_list[contents]))
+    for i in range(len(my_list)):
+        print("{:d}".format(my_list[i]))
