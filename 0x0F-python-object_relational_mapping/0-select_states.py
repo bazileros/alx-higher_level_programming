@@ -4,12 +4,20 @@
     Usage: ./0-select_states.py <username> <password> <database>
 """
 
-import MySQLdb
+import MySQLdb as sql
 import sys
 
 
 if __name__ == "__main__":
-    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM states ORDER BY id ASC")
-    [print(state) for state in cursor.fetchall()]
+    username = sys.argv[1]
+    password = sys.argv[2]
+    database = sys.argv[3]
+    try:
+        with sql.connect(user=username, passwd=password, db=database) as db:
+            with db.cursor() as cursor:
+                cursor.execute("SELECT * FROM `states` ORDER BY `id` ASC")
+                states = cursor.fetchall()
+                for state in states:
+                    print(state)
+    except sql.Error as e:
+        print(f"❌ Error: {e}")
