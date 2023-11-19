@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """
+    takes in an argument and displays all values in the states table of
+    hbtn_0e_0_usa where name matches the argument
 """
 
 import sys
@@ -14,8 +16,8 @@ if __name__ == "__main__":
         with sql.connect(user=username, passwd=password, db=database) as db:
             with db.cursor() as cursor:
                 cursor.execute(
-                    "SELECT * FROM `states` WHERE  BINARY `name` = '{}' ORDER BY id ASC"
-                    .format(state_name)
+                    "SELECT * FROM `states` WHERE  BINARY `name` = '{}'\
+                    ORDER BY id ASC".format(state_name)
                 )
                 [print(state) for state in cursor.fetchall()]
 
